@@ -19,12 +19,14 @@
             result => {
                 if (code != result.data) {
                     code = result.data;
-                    fetch(`https://paytoecell.onrender.com/scan/${code}`).then((response) => {
-                        docment.getElementById('info').innerText = JSON.stringify(resonse.body)
+                    console.log(code)
+                    fetch(`https://paytoecell.onrender.com/scan/${code}`).then(async (response) => {
+                        let jsonData = await response.json();
+                        document.getElementById('info').innerText = JSON.stringify(jsonData);
                     }).catch((err) => { console.log(err) })
                 }
             },
-            { highlightScanRegion: true, returnDetailedScanResult: true, highlightScanRegion: true, maxScansPerSecond: 2 },
+            { highlightScanRegion: true, returnDetailedScanResult: true, highlightScanRegion: true, maxScansPerSecond: 10 },
         );
         qrScanner.start()
     </script>
