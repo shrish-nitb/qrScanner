@@ -22,8 +22,11 @@
                     console.log(code)
                     fetch(`https://paytoecell.onrender.com/scan/${code}`).then(async (response) => {
                         let jsonData = await response.json();
+                        document.querySelector("#webcam").style.borderBottom = "solid 1.25rem lime";
                         document.getElementById('info').innerText = JSON.stringify(jsonData);
                     }).catch((err) => { console.log(err) })
+                } else {
+                    document.querySelector("#webcam").style.borderBottom = "solid 1.25rem red";
                 }
             },
             { highlightScanRegion: true, returnDetailedScanResult: true, highlightScanRegion: true, maxScansPerSecond: 10 },
