@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="padding:0px;margin:0px;">
+    <video id="webcam" style="width: 100vw;height: 50vh;border-bottom: solid 1.25rem red;"></video>
+    <script type="module">
+        import QrScanner from 'https://cdn.jsdelivr.net/npm/qr-scanner@1.4.2/+esm'
+        let code = "shrish";
+        const qrScanner = new QrScanner(
+            document.getElementById("webcam"),
+            result => {
+                if(code != result.data){
+                    code = result.data;
+                    console.log(code);
+                }
+            },
+            {highlightScanRegion: true, returnDetailedScanResult: true, highlightScanRegion: true, maxScansPerSecond: 2},
+        );
+        qrScanner.start()
+    </script>
+</body>
+
+</html>
